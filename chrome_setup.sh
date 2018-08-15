@@ -8,7 +8,7 @@ set -e
 ##   wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/chrome_setup.sh && bash chrome_setup.sh <chrome-version>
 ##
 ## By default script will install the latest google-chrome-stable.
-## Alternatively, to install google-chrome-unstable (google-chrome-beta) use `bash chrome-setup-semaphore.sh unstable` (beta)
+## Alternatively, to install google-chrome-unstable (google-chrome-beta) use `bash chrome-setup.sh unstable` (beta)
 #####
 
 CHROME_VERSION=${1:-"stable"}
