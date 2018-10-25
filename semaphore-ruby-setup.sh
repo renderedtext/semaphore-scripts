@@ -6,6 +6,7 @@ ruby_version=${1:-"2.5.3"}
 gem_version=${2:-"2.7.7"}
 ruby_archive="$ruby_version.tar.gz"
 ruby_install_path="/home/runner/.rbenv/versions/$ruby_version"
+semaphore_test_boosters="no"
 
 if [ ! -e /home/runner/.rbenv ]
 then
@@ -22,6 +23,12 @@ then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
   source ~/.bashrc
+fi
+
+if [ $(gem list | grep semaphore_test_boosters | wc -l) -gt 0 ]
+then
+  echo "Found Semaphore Test Boosters Gem, marking it for update..."
+  semaphore_test_boosters="yes"
 fi
 
 echo "*****************************************"
@@ -56,7 +63,7 @@ then
   gem install bundler --no-ri --no-rdoc
 fi
 
-if [ $(gem list | grep semaphore_test_boosters | wc -l) -gt 0 ]
+if [ $semaphore_test_boosters == "yes" ]
 then
   echo "Installing Semaphore Test Boosters Gem..."
   gem install semaphore_test_boosters
