@@ -1,5 +1,23 @@
 #!/bin/bash
 
+####
+# Description: Installs pyenv and Python version 3.7. Also uses caching so the future installations
+# are quicker.
+#
+# Runs on: Docker Light platform (requires Ubuntu 16.04, Ubuntu 14.04 not working properly: https://github.com/travis-ci/travis-ci/issues/9069)
+#
+# Usage:
+# Add the following command to the setup of a build in the Project Settings
+#
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/pyenv-py3.7.sh && bash pyenv-py3.7.sh <python_version>
+#
+# For example, the following command will install Python 3.7 and cache its installation on Semaphore
+#
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/pyenv-py3.7.sh && bash pyenv-py3.7.sh 3.7.0
+#
+# Note: Reset your dependency cache in Project Settings > Admin, before running this script
+####
+
 py_ver=${1:-'3.7.0'}
 py_cache_archive="$SEMAPHORE_CACHE_DIR/py$py_ver-cache.tar.gz"
 

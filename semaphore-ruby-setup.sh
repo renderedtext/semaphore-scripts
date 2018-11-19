@@ -1,5 +1,22 @@
 #!/bin/bash
 
+####
+# Description: Installs specified Ruby version and cache its installation on Semaphore
+#
+# Runs on: all Semaphore platforms
+#
+# Usage:
+# Add the following command to the setup of a build in the Project Settings
+#
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/semaphore-ruby-setup.sh && bash semaphore-ruby-setup.sh <ruby-version>
+#
+# For example, the following command will install Ruby 2.5.1 and cache its installation on Semaphore
+#
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/semaphore-ruby-setup.sh && bash semaphore-ruby-setup.sh 2.5.1
+#
+# Note: Reset your dependency cache in Project Settings > Admin, before running this script.
+####
+
 set -e
 
 ruby_version=${1:-"2.5.3"}

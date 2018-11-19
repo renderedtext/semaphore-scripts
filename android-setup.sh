@@ -1,3 +1,20 @@
+#! /usr/bin/env bash
+
+####
+# Description: This script creates Android development environment on Semaphore.
+#
+# Runs on: all Semaphore platforms
+#
+# Usage:
+# Add the following command to the setup of a build in the Project Settings
+#
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/android-setup.sh && bash android-setup.sh
+#
+# Note:
+####
+
+set -e
+
 # make more room in the environment
 sudo rm -rf ~/.rbenv ~/.phpbrew
 

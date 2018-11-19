@@ -1,7 +1,29 @@
 #!/bin/bash
 
-# Usage: bash aws-sec-group-from-ip-list.sh [<vpc-id>]
-# If VPC ID is not supplied, the security groups will be added to the default VPC.
+####
+# Description: This is a helper script which creates AWS security groups based on Semaphore's IP list.
+# It will read the IPs from `ips.txt` file (requires separate download of IPs). Also, if you wish to 
+# manually set your VPC, please add VPC ID value as a parameter to the last command.
+#
+# Runs on: Standard and Docker platform (requires AWS CLI)
+#
+# Usage:
+# Run the following commands on a machine with configured AWS CLI and access to firewall.
+#
+#    wget https://gist.githubusercontent.com/ervinb/ecab6ca35ec87ed0cadf/raw/ips.txt
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/aws-sec-group-from-ip-list.sh
+#    bash aws-sec-group-from-ip-list.sh [optional-vpc-id]
+#
+# For example, the following will download the Semaphore's IP list and create AWS security groups 
+# in non-default (user specified) VPC with ID vpc-123c4567:
+#
+#    wget https://gist.githubusercontent.com/ervinb/ecab6ca35ec87ed0cadf/raw/ips.txt
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/aws-sec-group-from-ip-list.sh
+#    bash aws-sec-group-from-ip-list.sh vpc-123c4567
+#
+# Note: Script requires a configured AWS CLI and access to the firewall. If no VPC ID is given, the default
+# VPC ID will be used. It may be run from Semaphore's SSH session.
+####
 
 set -e
 

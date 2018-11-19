@@ -1,13 +1,22 @@
 #!/bin/bash
 
-# Script for caching Meteor installation. It will download Meteor installation archive to 
-# .semaphore-cache directory and install it to $HOME/.meteor. If specific version is already
-# in cache, it will be installed from cache.
+####
+# Description: Installs specified Meteor version and cache its installation on Semaphore so the future
+# installations are faster.
 #
-# This script is based on original Meteor install script.
+# Runs on: all Semaphore platforms
 #
-# Usage: cache-meteor.sh <meteor_version> 
-
+# Usage:
+# Add the following command to the setup of a build in the Project Settings
+#
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/cache-meteor.sh && bash cache-meteor.sh <meteor-version>
+#
+# For example, the following command will install Ruby 1.7.0.1 and cache its installation on Semaphore
+#
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/cache-meteor.sh && bash cache-meteor.sh 1.7.0.1
+#
+# Note: This script is based on original Meteor install script.
+####
 
 set -e
 

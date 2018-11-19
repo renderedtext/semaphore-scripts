@@ -1,20 +1,23 @@
 #! /usr/bin/env bash
 
-set -e
-
-###
+####
+# Description: Installs specified GoLang version and cache its installation on Semaphore
+#
+# Runs on: all Semaphore platforms
+#
 # Usage:
 # Add the following command to the setup of a build in the Project Settings
-#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/golang_setup.sh && bash golang_setup.sh
 #
-# By default this script installs and caches Golang v1.10.
-# Also, in order to install arbitary Golang version, it is neccessary to pass the version as a parameter. 
-# This can be done with the command similar to the following:
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/golang-setup.sh && bash golang-setup.sh <golang-version>
 #
-#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/golang_setup.sh && bash golang_setup.sh <golang-version>
+# For example, the following command will install Ruby 1.10 and cache its installation on Semaphore
 #
-# Note: reset your dependency cache in Project Settings > Admin, before running this script
-###
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/golang_setup.sh && bash golang_setup.sh 1.10
+#
+# Note: Reset your dependency cache in Project Settings > Admin, before running this script
+####
+
+set -e
 
 GOLANG_VERSION=${1:-"1.10"}
 TAR=go$GOLANG_VERSION.linux-amd64.tar.gz
