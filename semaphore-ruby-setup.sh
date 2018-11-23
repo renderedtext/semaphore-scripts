@@ -8,11 +8,11 @@
 # Usage:
 # Add the following command to the setup of a build in the Project Settings
 #
-#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/semaphore-ruby-setup.sh && bash semaphore-ruby-setup.sh <ruby-version>
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/semaphore-ruby-setup.sh && source semaphore-ruby-setup.sh <ruby-version>
 #
 # For example, the following command will install Ruby 2.5.1 and cache its installation on Semaphore
 #
-#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/semaphore-ruby-setup.sh && bash semaphore-ruby-setup.sh 2.5.1
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/semaphore-ruby-setup.sh && source semaphore-ruby-setup.sh 2.5.1
 #
 # Note: Reset your dependency cache in Project Settings > Admin, before running this script.
 ####
@@ -39,7 +39,6 @@ then
   git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
-  source ~/.bashrc
 fi
 
 if [ $(gem list | grep semaphore_test_boosters | wc -l) -gt 0 ]
@@ -66,18 +65,20 @@ else
   echo "Ruby $ruby_version already installed. Skipping setup..."
 fi
 
+rbenv rehash
+
 echo "Activating Ruby $ruby_version"
 rbenv global $ruby_version
-
-if ! [ $gem_version = "$(gem --version)" ]; then
-  echo "Updating RubyGems to version $gem_version"
-  gem update --system $gem_version --no-ri --no-rdoc
-fi
 
 if [ ! -e $HOME/.rbenv/versions/$ruby_version/bin/bundle ]
 then
   echo "Installing bundler..."
   gem install bundler --no-ri --no-rdoc
+fi
+
+if ! [ $gem_version = "$(gem --version)" ]; then
+  echo "Updating RubyGems to version $gem_version"
+  gem update --system $gem_version --no-ri --no-rdoc
 fi
 
 if [ $semaphore_test_boosters == "yes" ]
