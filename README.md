@@ -2,8 +2,6 @@
 
 This repository contains scripts that can be used on Semaphore Classic to extend the functionality and customize the build and deploy environment. Semaphore Classic is part of [SemaphoreCI](https://semaphoreci.com), continuous integration tool that is built for speed and simplicity.
 
-Feel free to contribute by adding new scripts, improving the existing ones, or by giving your comments and suggestions.
-
 ## Usage
 
 Each script has a short description at the beginning, showing how to use it in your project. It is in form of comments and this section also lists any requirements or expected environment variables, as well as supported Semaphore platforms.
@@ -29,3 +27,15 @@ For example:
 # Note: reset your dependency cache in Project Settings > Admin, before running this script
 ####
 ```
+
+## Contributing
+
+Feel free to contribute by adding new scripts, improving the existing ones, or by giving your comments and suggestions.
+
+There are no strict rules on how to write the scripts, however, some basic guidelines should be followed:
+
+* Add description which provides all the data needed for successfully running the script (requirements, any environment variables, starting command example, etc). Preferrably, use the template as provided in **Usage** paragraph above.
+
+* Scripts should use [environment variables available on SemaphoreCI](https://semaphoreci.com/docs/available-environment-variables.html) when possible.
+
+* Installations should utilize caching when possible, which speeds up subsequent runs of the installation scripts.
