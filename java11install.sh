@@ -1,7 +1,7 @@
 #!/bin/bash
-# Dexcription : install oracle java 11 on sempahore platform
+# Description : install oracle java 11 on sempahore platform
 # Runs: on semaphore 1 platform
-# Usage: wget | bash
+# Usage: wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/nbors-semaphore1/java11install.sh | bash
 
 
 #downloading from Oracle
