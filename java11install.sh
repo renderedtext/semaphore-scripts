@@ -7,6 +7,15 @@ sudo mv jdk-11.0.1 /usr/lib/
 #install
 sudo update-alternatives --install /usr/bin/java java /usr/lib/jdk-11.*/bin/java  1111
 #select default
-sudo update-alternatives --config java
+version_info=$(echo -e '\n' | update-alternatives --config java | grep 1111.*manual | sed 's/*//')
+option_number=$(echo $version_info | awk '{print $1}')
+java_home_path=$(echo $version_info | awk '{print $2}' | grep -oP '/usr/lib/jdk[^/]*')
+
+echo $option_number | sudo update-alternatives --config java > /dev/null 2>&1
+echo $option_number | sudo update-alternatives --config javac > /dev/null 2>&1
+
+export JAVA_HOME="$java_home_path"
+
 #verify java version
 java -version
+
