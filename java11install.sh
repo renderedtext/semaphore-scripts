@@ -5,8 +5,10 @@
 
 
 #downloading from Oracle
-wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.tar.gz
-tar -zxvf jdk-*
+if [-e $SEMAPHORE_CACHE_DIR/jdk-11.0.1_linux-x64_bin.tar.gz]; then
+    wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.tar.gz -O $SEMAPHORE_CACHE_DIR/jdk-11.0.1_linux-x64_bin.tar.gz
+fi
+tar -zxvf $SEMAPHORE_CACHE_DIR/jdk-*
 #move into place
 sudo mv jdk-11.0.1 /usr/lib/jvm/java-11-oracle
 #install
