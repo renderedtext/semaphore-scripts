@@ -1,11 +1,10 @@
 #!/bin/bash
 # Description : install oracle java 11 on sempahore platform
 # Runs: on semaphore 1 platform
-# Usage: wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/nbors-semaphore1/java11install.sh | bash
-
+# Usage: wget -q -O - https://gist.githubusercontent.com/bogyo210/4cbd6951e5835da4aad5ca68e1a84f21/raw | bash
 
 #downloading from Oracle
-if [-e $SEMAPHORE_CACHE_DIR/jdk-11.0.1_linux-x64_bin.tar.gz]; then
+if [ ! -f $SEMAPHORE_CACHE_DIR/jdk-11.0.1_linux-x64_bin.tar.gz ]; then
     wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.tar.gz -O $SEMAPHORE_CACHE_DIR/jdk-11.0.1_linux-x64_bin.tar.gz
 fi
 tar -zxvf $SEMAPHORE_CACHE_DIR/jdk-*
@@ -25,4 +24,3 @@ export JAVA_HOME="$java_home_path"
 
 #verify java version
 java -version
-
