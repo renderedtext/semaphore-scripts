@@ -39,6 +39,7 @@ then
   git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
+  #curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 fi
 
 if [ $(gem list | grep semaphore_test_boosters | wc -l) -gt 0 ]
@@ -54,7 +55,7 @@ echo "*****************************************"
 if ! [ -d $ruby_install_path ]; then
   if ! [ -e $SEMAPHORE_CACHE_DIR/$ruby_archive ]; then
     cd /home/runner/.rbenv/plugins/ruby-build && git pull && cd -
-    CFLAGS='-fPIC' rbenv install $ruby_version
+    CFLAGS='-fPIC -std=gnu99' rbenv install $ruby_version
     (cd $SEMAPHORE_CACHE_DIR && tar -cf $ruby_archive -C $ruby_install_path .)
   else
     echo "Ruby $ruby_version installation archive found in cache. Unpacking..."
@@ -69,16 +70,17 @@ rbenv rehash
 
 echo "Activating Ruby $ruby_version"
 rbenv global $ruby_version
+ruby --version
 
 if [ ! -e $HOME/.rbenv/versions/$ruby_version/bin/bundle ]
 then
   echo "Installing bundler..."
-  gem install bundler --no-ri --no-rdoc
+  gem install bundler --no-document
 fi
 
 if ! [ $gem_version = "$(gem --version)" ]; then
   echo "Updating RubyGems to version $gem_version"
-  gem update --system $gem_version --no-ri --no-rdoc
+  gem update --system $gem_version --no-document
 fi
 
 if [ $semaphore_test_boosters == "yes" ]
