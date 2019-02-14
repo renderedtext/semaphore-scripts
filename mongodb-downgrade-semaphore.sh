@@ -1,13 +1,18 @@
 #! /usr/bin/env bash
 
-###
-# Add the line below to your setup command in Project Settings
+####
+# Description: This script will downgrade, cache install packages and start MongoDB on Semaphore.
 #
-# wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/mongodb-downgrade-semaphore.sh && bash mongodb-downgrade-semaphore.sh
+# Runs on: Standard and Docker platforms
+#
+# Usage:
+# Add the following command to the setup of a build in the Project Settings
+#
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/mongodb-downgrade-semaphore.sh && bash mongodb-downgrade-semaphore.sh <mongodb-version>
 #
 # Note: reset your dependency cache in Project Settings > Admin, before running this script
 # Taken from https://gist.githubusercontent.com/ervinb/3f8b634ecbb8646ea00ad2a0d5523b33/raw/mongodb-downgrade-semaphore.sh
-###
+####
 
 MONGODB_VERSION=${1:-'2.6.12'}
 
