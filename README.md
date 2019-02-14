@@ -1,6 +1,6 @@
 # Semaphore Scripts
 
-This repository contains scripts that can be used on Semaphore Classic to extend the functionality and customize the build and deploy environment. Semaphore Classic is part of [SemaphoreCI](https://semaphoreci.com), continuous integration tool that is built for speed and simplicity.
+This repository contains scripts that can be used on Semaphore to extend the functionality and customize the build and deploy environment.
 
 ## Usage
 
