@@ -1,6 +1,17 @@
 #!/bin/bash
 
-# Taken from https://gist.github.com/ervinb/bff380f0b333f76dca14eae735cb4649/
+####
+# Description: Installs latest MySQL Server 5.7 version from MySQL PPA.
+#
+# Runs on: All platforms
+#
+# Usage:
+# Add the following command to the setup of a build in the Project Settings
+#
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/mysql-57-ppa.sh && bash mysql-57-ppa.sh
+#
+# Note: Taken from https://gist.github.com/ervinb/bff380f0b333f76dca14eae735cb4649/
+####
 
 data_dir="/usr/data"
 
