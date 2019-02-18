@@ -11,8 +11,9 @@ function prepare-data-dir(){
 }
 
 function install-mysql(){
-  echo "* Installing MySQL 5.7 from PPA"
+  echo "* Adding PPA key"
   curl -s -L https://repo.mysql.com/RPM-GPG-KEY-mysql |  sudo apt-key add -
+  echo "* Installing MySQL 5.7 from PPA"
   echo "deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7" | sudo tee /etc/apt/sources.list.d/mysql57.list
   install-package --update-new mysql-server -o Dpkg::Options::="--force-confnew"
 }
