@@ -21,6 +21,7 @@ set -e
 
 ruby_version=${1:-"2.5.3"}
 gem_version=${2:-"2.7.7"}
+bundler_version=${3:-"1.17.3"}
 ruby_archive="$ruby_version.tar.gz"
 ruby_install_path="/home/runner/.rbenv/versions/$ruby_version"
 semaphore_test_boosters="no"
@@ -74,8 +75,8 @@ ruby --version
 
 if [ ! -e $HOME/.rbenv/versions/$ruby_version/bin/bundle ]
 then
-  echo "Installing bundler..."
-  gem install bundler --no-document
+  echo "Installing bundler $bundler_version..."
+  gem install bundler --version $bundler_version --no-document
 fi
 
 if ! [ $gem_version = "$(gem --version)" ]; then
