@@ -52,7 +52,7 @@ echo "*****************************************"
 echo "Checking for prebuilt Ruby $ruby_version"
 echo "*****************************************"
 response=$(curl --write-out %{http_code} --head --silent --output /dev/null $HOST/ruby/$ruby_version.tar.gz)
-if [ $response -eq 200 ]; then
+if [[ "$response = "200" ]]; then
   wget $HOST/ruby/$ruby_version.tar.gz
   tar -zxf $ruby_version.tar.gz
   mv $ruby_version ~/.rbenv/versions/
