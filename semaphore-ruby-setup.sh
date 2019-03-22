@@ -55,6 +55,7 @@ response=$(curl --write-out %{http_code} --head --silent --output /dev/null $HOS
 if [ "$response" == "200" ]; then
   wget $HOST/ruby/$ruby_version.tar.gz
   tar -zxf $ruby_version.tar.gz
+  rm -rf ~/.rbenv/versions/$rupy_version
   mv $ruby_version ~/.rbenv/versions/
 fi
 
