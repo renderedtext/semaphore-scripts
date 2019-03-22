@@ -24,7 +24,7 @@ gem_version=${2:-"2.7.7"}
 ruby_archive="$ruby_version.tar.gz"
 ruby_install_path="/home/runner/.rbenv/versions/$ruby_version"
 semaphore_test_boosters="no"
-HOST="http://packages.semaphoreci.com/classic"
+HOST="http://packages.semaphoreci.com/classic/ruby"
 
 if [ ! -e /home/runner/.rbenv ]
 then
@@ -51,14 +51,13 @@ fi
 echo "*****************************************"
 echo "Checking for prebuilt Ruby $ruby_version"
 echo "*****************************************"
-response=$(curl --write-out %{http_code} --head --silent --output /dev/null $HOST/ruby/$ruby_version.tar.gz)
+response=$(curl --write-out %{http_code} --head --silent --output /dev/null $HOST/$ruby_version.tar.gz)
 if [ "$response" == "200" ]; then
-  wget $HOST/ruby/$ruby_version.tar.gz
+  wget $HOST/$ruby_version.tar.gz
   tar -zxf $ruby_version.tar.gz
-  rm -rf ~/.rbenv/versions/$rupy_version
+  rm -rf ~/.rbenv/versions/$ruby_version
   mv $ruby_version ~/.rbenv/versions/
 fi
-
 
 
 echo "*****************************************"
