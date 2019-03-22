@@ -56,6 +56,7 @@ if [ "$response" == "200" ]; then
   wget $HOST/$ruby_version.tar.gz
   tar -zxf $ruby_version.tar.gz
   rm -rf ~/.rbenv/versions/$ruby_version
+  rm -rf $ruby_version.tar.gz
   mv $ruby_version ~/.rbenv/versions/
 fi
 
