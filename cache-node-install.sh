@@ -10,10 +10,12 @@
 # Add the following command to the setup of a build in the Project Settings
 #
 #    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/cache-node-install.sh && source cache-node-install.sh <node.js_version>
+#    nvm use <node.js_version>
 #
-# For example, the following command will install Node.JS version 10.13.0
+# For example, the following command will install Node.JS version 12.0.0
 #
-#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/cache-node-install.sh && source cache-node-install.sh 10.13.0
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/cache-node-install.sh && bash cache-node-install.sh 12.0.0
+#    nvm use 12.0.0
 #
 # Note: 
 ####
