@@ -21,6 +21,8 @@ unzip -uo chromedriver_linux64.zip
 
 sudo mv chromedriver /usr/local/bin/chromedriver
 
+rm -f chromedriver_linux64.zip
+
 ls -lah
 
 
