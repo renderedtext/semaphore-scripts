@@ -13,7 +13,6 @@ chmod +x semaphore-ruby-setup.sh
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
-rm google-chrome-stable_current_amd64.deb
 
 wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip
 
@@ -24,3 +23,9 @@ sudo mv chromedriver /usr/local/bin/chromedriver
 ls -lah
 
 
+wget https://launchpad.net/~git-core/+archive/ubuntu/ppa/+files/git_2.21.0-0ppa1~ubuntu14.04.1_amd64.deb
+wget https://launchpad.net/~git-core/+archive/ubuntu/ppa/+files/git-man_2.21.0-0ppa1~ubuntu14.04.1_all.deb
+
+sudo dpkg -i git_2.21.0-0ppa1~ubuntu14.04.1_amd64.deb git-man_2.21.0-0ppa1~ubuntu14.04.1_all.deb
+
+rm -f *.deb
