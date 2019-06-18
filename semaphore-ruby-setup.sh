@@ -21,7 +21,7 @@ set -e
 
 ruby_version=${1:-"2.5.3"}
 gem_version=${2:-"2.7.7"}
-bundler_version=${3:-"1.17.3"}
+bundler_version=${3:-"0.0.0"}
 ruby_archive="$ruby_version.tar.gz"
 ruby_install_path="/home/runner/.rbenv/versions/$ruby_version"
 semaphore_test_boosters="no"
@@ -73,10 +73,16 @@ echo "Activating Ruby $ruby_version"
 rbenv global $ruby_version
 ruby --version
 
-if [ ! -e $HOME/.rbenv/versions/$ruby_version/bin/bundle ]
+if [ $bundler_version != "0.0.0" ]
 then
-  echo "Installing bundler $bundler_version..."
-  gem install bundler --version $bundler_version --no-document
+  echo "User supplied bundle version parameter. Checking for any existing installations."
+  if [ ! -e $HOME/.rbenv/versions/$ruby_version/bin/bundle ]
+  then
+    echo "Installing bundler $bundler_version..."
+    gem install bundler --version $bundler_version --no-document
+  else
+    echo "Bundler already installed for this Ruby version, using existing installation."
+  fi
 fi
 
 if ! [ $gem_version = "$(gem --version)" ]; then
