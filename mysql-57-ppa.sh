@@ -22,11 +22,25 @@ function prepare-data-dir(){
 }
 
 function install-mysql(){
-  echo "* Adding PPA key"
-  curl -s -L https://repo.mysql.com/RPM-GPG-KEY-mysql |  sudo apt-key add -
-  echo "* Installing MySQL 5.7 from PPA"
-  echo "deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7" | sudo tee /etc/apt/sources.list.d/mysql57.list
-  install-package --update-new mysql-server -o Dpkg::Options::="--force-confnew"
+  echo "* Creating temporary folder"
+  mkdir /tmp/mysql
+  cd /tmp/mysql
+  echo "* Downloading packages"
+  wget http://packages.semaphoreci.com/classic/mysql/libmysqlclient20_5.7.26-1ubuntu14.04_amd64.deb
+  wget http://packages.semaphoreci.com/classic/mysql/libmysqlclient-dev_5.7.26-1ubuntu14.04_amd64.deb
+  wget http://packages.semaphoreci.com/classic/mysql/mysql-client_5.7.26-1ubuntu14.04_amd64.deb
+  wget http://packages.semaphoreci.com/classic/mysql/mysql-common_5.7.26-1ubuntu14.04_amd64.deb
+  wget http://packages.semaphoreci.com/classic/mysql/mysql-community-client_5.7.26-1ubuntu14.04_amd64.deb
+  wget http://packages.semaphoreci.com/classic/mysql/mysql-community-server_5.7.26-1ubuntu14.04_amd64.deb
+  wget http://packages.semaphoreci.com/classic/mysql/mysql-server_5.7.26-1ubuntu14.04_amd64.deb
+  echo "* Removing previous installation"
+  sudo apt-get remove mysql-server mysql-client mysql-common libmysqlclient18 -y
+  echo "* Installing MySQL..."
+  sudo apt-get install libmecab2 -y
+  sudo DEBIAN_FRONTEND=noninterative dpkg -i --force-confold mysql-community-server_5.7.26-1ubuntu14.04_amd64.deb mysql-community-client_5.7.26-1ubuntu14.04_amd64.deb mysql-common_5.7.26-1ubuntu14.04_amd64.deb mysql-client_5.7.26-1ubuntu14.04_amd64.deb libmysqlclient-dev_5.7.26-1ubuntu14.04_amd64.deb libmysqlclient20_5.7.26-1ubuntu14.04_amd64.deb mysql-server_5.7.26-1ubuntu14.04_amd64.deb mysql-common_5.7.26-1ubuntu14.04_amd64.deb
+  echo "* Cleaning environment"
+  cd -
+  rm -rf /rmp/mysql
 }
 
 function upgrade-system-tables(){
