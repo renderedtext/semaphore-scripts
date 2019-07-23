@@ -40,7 +40,7 @@ function install-mysql(){
   sudo DEBIAN_FRONTEND=noninterative dpkg -i --force-confold mysql-community-server_5.7.26-1ubuntu14.04_amd64.deb mysql-community-client_5.7.26-1ubuntu14.04_amd64.deb mysql-common_5.7.26-1ubuntu14.04_amd64.deb mysql-client_5.7.26-1ubuntu14.04_amd64.deb libmysqlclient-dev_5.7.26-1ubuntu14.04_amd64.deb libmysqlclient20_5.7.26-1ubuntu14.04_amd64.deb mysql-server_5.7.26-1ubuntu14.04_amd64.deb mysql-common_5.7.26-1ubuntu14.04_amd64.deb
   echo "* Cleaning environment"
   cd -
-  rm -rf /rmp/mysql
+  rm -rf /tmp/mysql
 }
 
 function upgrade-system-tables(){
