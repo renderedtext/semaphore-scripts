@@ -10,9 +10,9 @@
 #
 #    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/golang-setup.sh && bash golang-setup.sh <golang-version>
 #
-# For example, the following command will install Ruby 1.10 and cache its installation on Semaphore
+# For example, the following command will install Ruby 1.11.1 and cache its installation on Semaphore
 #
-#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/golang_setup.sh && bash golang_setup.sh 1.10
+#    wget https://raw.githubusercontent.com/renderedtext/semaphore-scripts/master/golang-setup.sh && bash golang-setup.sh 1.11.1
 #
 # Note: Reset your dependency cache in Project Settings > Admin, before running this script
 ####
