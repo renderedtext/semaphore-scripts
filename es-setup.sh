@@ -24,6 +24,10 @@ ES_HOST="0.0.0.0"
 ES_PORT="9200"
 ES_VERSION=${1:-'5.0.0'}
 DEB='elasticsearch-'"$ES_VERSION"'.deb'
+if [ $(echo $ES_VERSION | cut -d "." -f 1) = "7"  ]
+then
+  DEB='elasticsearch-'"$ES_VERSION"'-amd64.deb'
+fi
 URL="https://artifacts.elastic.co/downloads/elasticsearch/$DEB"
 
 function stall_for_elasticsearch() {
