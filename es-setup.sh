@@ -64,7 +64,8 @@ function install_new_version() {
   echo ">> Installing ElasticSearch $ES_VERSION"
   echo 'Y' | sudo dpkg -i $SEMAPHORE_CACHE_DIR/$DEB
 
-  sudo service elasticsearch start
+  #sudo service elasticsearch start
+  sudo /etc/init.d/elasticsearch start
   
   echo ">> Installation completed"
 }
