@@ -64,7 +64,7 @@ function install_new_version() {
   
   sudo cat /var/log/elasticsearch/*
   
-  sudo cat /var/log/syslog
+  sudo service elasticsearch status
 
   echo ">> Installation completed"
 }
