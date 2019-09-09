@@ -80,10 +80,9 @@ remove_installed_version
 
 install_new_version
 
-sudo cat /var/log/syslog
-
-sudo journalctl --unit elasticsearch
-
 stall_for_elasticsearch
+
+sudo cat /var/log/syslog
+sudo journalctl --unit elasticsearch
 
 run_health_check
