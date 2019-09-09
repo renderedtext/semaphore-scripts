@@ -80,6 +80,8 @@ remove_installed_version
 
 install_new_version
 
+sudo journalctl --unit elasticsearch
+
 stall_for_elasticsearch
 
 run_health_check
