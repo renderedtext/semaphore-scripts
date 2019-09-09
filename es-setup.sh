@@ -63,6 +63,8 @@ function install_new_version() {
   sudo service elasticsearch start
   
   sudo service elasticsearch status
+  
+  sudo journalctl --unit elasticsearch
 
   echo ">> Installation completed"
 }
