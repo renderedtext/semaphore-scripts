@@ -30,6 +30,10 @@ then
 fi
 URL="https://artifacts.elastic.co/downloads/elasticsearch/$DEB"
 
+function view_log() {
+  sudo cat /var/log/syslo*
+}
+
 function stall_for_elasticsearch() {
   echo ">> Waiting for ElasticSearch to become available"
 
@@ -70,9 +74,7 @@ function run_health_check() {
   curl http://"$ES_HOST":"$ES_PORT"/_cluster/health?pretty=true
 }
 
-function view_log() {
-  sudo cat /var/log/syslog
-}
+
 setup_java
 
 remove_installed_version
