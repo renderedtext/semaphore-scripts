@@ -18,7 +18,7 @@
 # Note: Script does not properly detect if the ES version 2.x is started so it will hang on this step.
 ####
 
-set -e
+
 
 ES_HOST="0.0.0.0"
 ES_PORT="9200"
