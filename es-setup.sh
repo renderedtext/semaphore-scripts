@@ -61,6 +61,10 @@ function install_new_version() {
   echo 'Y' | sudo dpkg -i $SEMAPHORE_CACHE_DIR/$DEB
 
   sudo service elasticsearch start
+  
+  sudo cat /var/log/elasticsearch/*
+  
+  sudo cat /var/log/syslog
 
   echo ">> Installation completed"
 }
