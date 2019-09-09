@@ -62,10 +62,6 @@ function install_new_version() {
 
   sudo service elasticsearch start
   
-  sudo service elasticsearch status
-  
-  sudo journalctl --unit elasticsearch
-
   echo ">> Installation completed"
 }
 
@@ -83,6 +79,7 @@ install_new_version
 stall_for_elasticsearch
 
 sudo cat /var/log/syslog
-sudo journalctl --unit elasticsearch
 
 run_health_check
+
+sudo cat /var/log/syslog
