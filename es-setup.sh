@@ -70,6 +70,9 @@ function run_health_check() {
   curl http://"$ES_HOST":"$ES_PORT"/_cluster/health?pretty=true
 }
 
+function view_log() {
+  sudo cat /var/log/syslog
+}
 setup_java
 
 remove_installed_version
@@ -78,8 +81,8 @@ install_new_version
 
 stall_for_elasticsearch
 
-sudo cat /var/log/syslog
+view_log
 
 run_health_check
 
-sudo cat /var/log/syslog
+view_log
