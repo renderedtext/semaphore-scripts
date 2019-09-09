@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-
+set -e 
 ####
 # Description: Replaces default ElasticSearch version with version specified as parameter. Waits for ES service
 # to become available and uses caching to speed up the install process.
@@ -30,10 +30,6 @@ then
 fi
 URL="https://artifacts.elastic.co/downloads/elasticsearch/$DEB"
 
-function view_log() {
-  
-  sudo cat /var/log/syslog
-}
 
 function stall_for_elasticsearch() {
   echo ">> Waiting for ElasticSearch to become available"
@@ -67,7 +63,7 @@ function install_new_version() {
 
   #sudo service elasticsearch start
   sudo /etc/init.d/elasticsearch restart
-  view_log
+
   echo ">> Installation completed"
 }
 
@@ -84,7 +80,5 @@ remove_installed_version
 install_new_version
 
 stall_for_elasticsearch
-
-view_log
 
 run_health_check
