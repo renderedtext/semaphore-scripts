@@ -31,7 +31,8 @@ fi
 URL="https://artifacts.elastic.co/downloads/elasticsearch/$DEB"
 
 function view_log() {
-  sudo cat /var/log/syslo*
+  
+  sudo cat /var/log/syslog
 }
 
 function stall_for_elasticsearch() {
@@ -66,7 +67,7 @@ function install_new_version() {
 
   #sudo service elasticsearch start
   sudo /etc/init.d/elasticsearch start
-  
+  view_log
   echo ">> Installation completed"
 }
 
@@ -87,5 +88,3 @@ stall_for_elasticsearch
 view_log
 
 run_health_check
-
-view_log
