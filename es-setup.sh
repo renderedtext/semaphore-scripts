@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-
+set -e 
 ####
 # Description: Replaces default ElasticSearch version with version specified as parameter. Waits for ES service
 # to become available and uses caching to speed up the install process.
@@ -18,7 +18,7 @@
 # Note: Script does not properly detect if the ES version 2.x is started so it will hang on this step.
 ####
 
-set -e
+
 
 ES_HOST="0.0.0.0"
 ES_PORT="9200"
@@ -29,6 +29,7 @@ then
   DEB='elasticsearch-'"$ES_VERSION"'-amd64.deb'
 fi
 URL="https://artifacts.elastic.co/downloads/elasticsearch/$DEB"
+
 
 function stall_for_elasticsearch() {
   echo ">> Waiting for ElasticSearch to become available"
@@ -50,7 +51,7 @@ function setup_java() {
 
 function remove_installed_version() {
   sudo service elasticsearch stop
-  sudo apt-get purge -y elasticsearch
+  sudo apt-get purge -f -y elasticsearch
   sudo rm -rf /var/lib/elasticsearch
 }
 
@@ -60,7 +61,8 @@ function install_new_version() {
   echo ">> Installing ElasticSearch $ES_VERSION"
   echo 'Y' | sudo dpkg -i $SEMAPHORE_CACHE_DIR/$DEB
 
-  sudo service elasticsearch start
+  #sudo service elasticsearch start
+  sudo /etc/init.d/elasticsearch restart
 
   echo ">> Installation completed"
 }
@@ -69,6 +71,7 @@ function run_health_check() {
   echo ">> Running health check..."
   curl http://"$ES_HOST":"$ES_PORT"/_cluster/health?pretty=true
 }
+
 
 setup_java
 
