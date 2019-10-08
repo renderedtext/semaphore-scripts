@@ -24,13 +24,13 @@ phpunit_ver=${1:-'6.5'}
 phpunit_cache_archive="$SEMAPHORE_CACHE_DIR/phpunit-$phpunit_ver.phar"
 
 if [ -e $phpunit_cache_archive ]; then
-  mv $phpunit_cache_archive /usr/local/bin/phpunit
+  sudo mv $phpunit_cache_archive /usr/local/bin/phpunit
   sudo chmod +x /usr/local/bin/phpunit/phpunit-$phpunit_ver.phar
 else
-wget https://phar.phpunit.de/phpunit-$phpunit_ver.phar
-chmod +x phpunit-$phpunit_ver.phar
-cp phpunit-$phpunit_ver.phar $SEMAPHORE_CACHE_DIR
-sudo mv phpunit-$phpunit_ver.phar /usr/local/bin/phpunit
+  wget https://phar.phpunit.de/phpunit-$phpunit_ver.phar
+  chmod +x phpunit-$phpunit_ver.phar
+  cp phpunit-$phpunit_ver.phar $SEMAPHORE_CACHE_DIR
+  sudo mv phpunit-$phpunit_ver.phar /usr/local/bin/phpunit
 fi
 phpunit --version
 
