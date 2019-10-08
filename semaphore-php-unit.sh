@@ -25,7 +25,7 @@ phpunit_cache_archive="$SEMAPHORE_CACHE_DIR/phpunit-$phpunit_ver.phar"
 
 if [ -e $phpunit_cache_archive ]; then
   sudo mv $phpunit_cache_archive /usr/local/bin/phpunit
-  sudo chmod +x /usr/local/bin/phpunit/phpunit-$phpunit_ver.phar
+  sudo chmod +x /usr/local/bin/phpunit/phpunit
 else
   wget https://phar.phpunit.de/phpunit-$phpunit_ver.phar
   chmod +x phpunit-$phpunit_ver.phar
