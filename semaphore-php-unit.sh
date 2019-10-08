@@ -21,20 +21,9 @@
 set -e
 
 phpunit_ver=${1:-'6.5'}
-phpunit_cache_archive="$SEMAPHORE_CACHE_DIR/phpunit$phpunit_ver.phar"
 
-if [ -e $phpunit_cache_archive ]; then
-  echo "Restoring phpunit installation cache..."
-  chmod +x $SEMAPHORE_CACHE_DIR/phpunit-$phpunit_ver.phar
-  sudo mv $SEMAPHORE_CACHE_DIR/phpunit-$phpunit_ver.phar /usr/local/bin/phpunit
-else
-  echo "Cached phpunit installation not found, downloading..."
-  wget https://phar.phpunit.de/phpunit-$phpunit_ver.phar
-  cp phpunit-$phpunit_ver.phar $phpunit_cache_archive
-  chmod +x phpunit-$phpunit_ver.phar
-  sudo mv phpunit-$phpunit_ver.phar /usr/local/bin/phpunit
-  echo "Done."
-fi
-  
+wget https://phar.phpunit.de/phpunit-$phpunit_ver.phar
+chmod +x phpunit-$phpunit_ver.phar
+sudo mv phpunit-$phpunit_ver.phar /usr/local/bin/phpunit
 phpunit --version
 
