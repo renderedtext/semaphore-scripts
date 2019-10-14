@@ -58,7 +58,6 @@ if [ "$response" == "200" ]; then
   rm -rf ~/.rbenv/versions/$ruby_version
   rm -rf $ruby_version.tar.gz
   mv $ruby_version ~/.rbenv/versions/
-  gem_version="3.0.3"
 fi
 
 
