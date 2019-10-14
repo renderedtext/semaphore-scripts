@@ -25,6 +25,7 @@ bundler_version=${3:-"0.0.0"}
 ruby_archive="$ruby_version.tar.gz"
 ruby_install_path="/home/runner/.rbenv/versions/$ruby_version"
 semaphore_test_boosters="no"
+HOST="http://packages.semaphoreci.com/classic/ruby"
 
 if [ ! -e /home/runner/.rbenv ]
 then
@@ -48,6 +49,18 @@ then
   echo "Found Semaphore Test Boosters Gem, marking it for update..."
   semaphore_test_boosters="yes"
 fi
+echo "*****************************************"
+echo "Checking for prebuilt Ruby $ruby_version"
+echo "*****************************************"
+response=$(curl --write-out %{http_code} --head --silent --output /dev/null $HOST/$ruby_version.tar.gz)
+if [ "$response" == "200" ]; then
+  wget $HOST/$ruby_version.tar.gz
+  tar -zxf $ruby_version.tar.gz
+  rm -rf ~/.rbenv/versions/$ruby_version
+  rm -rf $ruby_version.tar.gz
+  mv $ruby_version ~/.rbenv/versions/
+fi
+
 
 echo "*****************************************"
 echo "Setting up Ruby $ruby_version"
