@@ -56,7 +56,7 @@ echo "*****************************************"
 if ! [ -d $ruby_install_path ]; then
   if ! [ -e $SEMAPHORE_CACHE_DIR/$ruby_archive ]; then
     cd /home/runner/.rbenv/plugins/ruby-build && git pull && cd -
-    CFLAGS='-fPIC -std=gnu99' rbenv install $ruby_version
+    rbenv install $ruby_version
     (cd $SEMAPHORE_CACHE_DIR && tar -cf $ruby_archive -C $ruby_install_path .)
   else
     echo "Ruby $ruby_version installation archive found in cache. Unpacking..."
