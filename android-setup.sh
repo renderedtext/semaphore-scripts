@@ -59,7 +59,7 @@ accept-licenses
 list-sdk-components
 
 # setup Android system image 
-(while sleep 3; do echo "y"; done) | sdkmanager "build-tools;26.0.1" "platforms;android-24" "extras;google;m2repository" "extras;android;m2repository" "platform-tools" "emulator" "system-images;android-24;google_apis;armeabi-v7a"
+(while sleep 3; do echo "y"; done) | sdkmanager "build-tools;26.0.1" "platforms;android-25" "extras;google;m2repository" "extras;android;m2repository" "platform-tools" "emulator" "system-images;android-25;google_apis;armeabi-v7a"
 
 # create an AVD
-echo -ne '\n' | avdmanager -v create avd -n semaphore-android-dev -k "system-images;android-24;google_apis;armeabi-v7a" --tag "google_apis" --abi "armeabi-v7a"
+echo -ne '\n' | avdmanager -v create avd -n semaphore-android-dev -k "system-images;android-25;google_apis;armeabi-v7a" --tag "google_apis" --abi "armeabi-v7a"
