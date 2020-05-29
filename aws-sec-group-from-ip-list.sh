@@ -32,7 +32,7 @@ aws_sec_group="semaphore-worker-security-group-"
 aws_sec_group_limit=50
 
 ips_count=$(cat $ip_list | wc -l)
-let sec_groups_needed=($ips_count+$aws_sec_group_limit-1)/$aws_sec_group_limit;
+let sec_groups_needed=$(($ips_count+$aws_sec_group_limit-1))/$aws_sec_group_limit;
 
 start_line=1
 finish_line=$aws_sec_group_limit
